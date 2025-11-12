@@ -1,3 +1,4 @@
+// ResultPopup.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -5,41 +6,38 @@ using TMPro;
 public class ResultPopup : MonoBehaviour
 {
     public static ResultPopup Instance { get; private set; }
-    public bool IsOpen => root.activeSelf;
+    public bool IsOpen => root && root.activeSelf;
 
-    [SerializeField] private GameObject root;   // ResultPopup 자체 또는 내부 루트
+    [SerializeField] private GameObject root;
     [SerializeField] private Image art;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descText;
+    [SerializeField] private TMP_Text nameText, descText;
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        Debug.Log("[Popup] Awake");
     }
-    private void Start()
+
+    void Start()
     {
-        if (root != null)
-            root.SetActive(false); // Awake보다 Start에서 비활성화
+        if (root) root.SetActive(false);
+        Debug.Log("[Popup] Start, root off");
     }
-    public void Show(CuteTarget target)
+
+    public void Show(CuteTarget t)
     {
-        if (target != null)
-        {
-            if (art) art.sprite = target.PreviewSprite;
-            if (nameText) nameText.text = target.DisplayName;
-            if (descText) descText.text = target.Description;
-        }
-        root.SetActive(true);
+        if (!t) { Debug.LogWarning("[Popup] Show called with null target"); return; }
+        if (art) art.sprite = t.PreviewSprite;
+        if (nameText) nameText.text = t.DisplayName;
+        if (descText) descText.text = t.Description;
+        if (root) root.SetActive(true);
+        Debug.Log($"[Popup] Show: {t.name} ({t.TargetId})");
     }
 
     public void Close()
     {
-        root.SetActive(false);   // 아이들 배경으로 복귀
+        if (root) root.SetActive(false);
+        Debug.Log("[Popup] Close");
     }
 }
