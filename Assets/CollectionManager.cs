@@ -1,70 +1,48 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 public class CollectionManager : MonoBehaviour
 {
     public static CollectionManager Instance { get; private set; }
 
-    [SerializeField] private List<string> allIds = new List<string>(); // 전체 대상 ID 목록
-    [SerializeField] private bool resetOnStart = true;
-
+    // 실제 수집된 ID들
     private HashSet<string> collected = new HashSet<string>();
+
+    // 지금까지 수집한 개수
     public int Count => collected.Count;
-    public int Total => allIds.Count;
-    public bool Has(string id) => collected.Contains(id);
 
-    public event Action<int,int> OnChanged;  // (count, total)
+    // 전체 개수 (Inspector에서 지정)
+    [SerializeField] private int totalCount = 3;
+    public int Total => totalCount;
 
-    private void Awake()
+    // UI 업데이트 이벤트
+    public System.Action<int, int> OnChanged;
+
+    void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    public void Collect(string id)
     {
-        if (resetOnStart) ResetAll();
-        else Load();
+        if (string.IsNullOrEmpty(id)) return;
 
-        OnChanged?.Invoke(Count, Total); // 초기 UI 갱신
-    }
-
-    public bool Collect(string id)
-    {
-        if (string.IsNullOrEmpty(id)) return false;
-        bool added = collected.Add(id);
-        if (added)
+        if (collected.Add(id))
         {
-            Save();
-            OnChanged?.Invoke(Count, Total);
+            // Count, Total 전달
+            OnChanged?.Invoke(collected.Count, totalCount);
         }
-        return added;
     }
 
-    public void ResetAll()
+    public bool Has(string id)
     {
-        collected.Clear();
-        PlayerPrefs.DeleteKey("collected");
-        PlayerPrefs.Save();
-        OnChanged?.Invoke(Count, Total);
-    }
-
-    private void Save()
-    {
-        string data = string.Join(",", collected);
-        PlayerPrefs.SetString("collected", data);
-        PlayerPrefs.Save();
-    }
-
-    private void Load()
-    {
-        collected.Clear();
-        var data = PlayerPrefs.GetString("collected", "");
-        if (!string.IsNullOrEmpty(data))
-        {
-            foreach (var id in data.Split(','))
-                if (!string.IsNullOrEmpty(id)) collected.Add(id);
-        }
+        return collected.Contains(id);
     }
 }

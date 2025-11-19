@@ -19,34 +19,14 @@ public class UIOverlay : MonoBehaviour
 
     private void Awake()
     {
-        if (nextButton) nextButton.gameObject.SetActive(false);
         homeButton.onClick.AddListener(GoHome);
         bookButton.onClick.AddListener(OpenBook);
-        if (nextButton) nextButton.onClick.AddListener(GoNext);
+        nextButton.onClick.AddListener(GoNext);
     }
 
     private void Start()
     {
         startCount = CollectionManager.Instance ? CollectionManager.Instance.Count : 0;
-
-        if (CollectionManager.Instance)
-            CollectionManager.Instance.OnChanged += OnCollectionChanged;
-    }
-
-    private void OnDestroy()
-    {
-        if (CollectionManager.Instance)
-            CollectionManager.Instance.OnChanged -= OnCollectionChanged;
-    }
-
-    private void OnCollectionChanged(int count, int total)
-    {
-        // 이 씬에서 처음으로 하나라도 늘면 Next 버튼 표시
-        if (!shownNext && count > startCount)
-        {
-            shownNext = true;
-            if (nextButton) nextButton.gameObject.SetActive(true);
-        }
     }
 
     private void GoHome()
@@ -57,6 +37,7 @@ public class UIOverlay : MonoBehaviour
 
     private void OpenBook()
     {
+        SceneMemory.LastSceneName = SceneManager.GetActiveScene().name;
         if (!string.IsNullOrEmpty(collectionSceneName)) SceneManager.LoadScene(collectionSceneName);
         else Debug.LogWarning("Collection scene name not set.");
     }
