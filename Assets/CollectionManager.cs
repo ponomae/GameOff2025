@@ -45,4 +45,9 @@ public class CollectionManager : MonoBehaviour
     {
         return collected.Contains(id);
     }
+    public void ResetCollection()
+    {
+        collected.Clear();
+        OnChanged?.Invoke(collected.Count, totalCount);
+    }
 }

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66971eb5c41174d8791d83565914b4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalCount: 10
+  totalCount: 14
 --- !u!4 &174712911
 Transform:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e91033d474b4de995e49fc3da0da5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSceneName: MyRoom
+  firstSceneName: GettingReady
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

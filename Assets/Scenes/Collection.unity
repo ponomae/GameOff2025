@@ -497,18 +497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entries:
-  - id: desk
-    displayName: Deskuma
-    description: I live under your desk
-    previewSprite: {fileID: 21300000, guid: 12ad0851758a945e496131f6e0fa694b, type: 3}
-  - id: rug
-    displayName: Sottosock
-    description: I'm here to surprise you
-    previewSprite: {fileID: 21300000, guid: 03f1d98d0803e4c7eaf8dc118b6f472b, type: 3}
-  - id: poster
-    displayName: Nanibake
-    description: I don't know where I come from
-    previewSprite: {fileID: 21300000, guid: d8d0e0478a2a04a19a2940a02ce1be72, type: 3}
   - id: faucet
     displayName: Elefaucet
     description: Hello
@@ -537,6 +525,34 @@ MonoBehaviour:
     displayName: Smiley
     description: (smile)
     previewSprite: {fileID: 21300000, guid: 47d07953eec7e4b099ce42bc6dc16ced, type: 3}
+  - id: tsurika1
+    displayName: TsurikaOne
+    description: Gatan Goton
+    previewSprite: {fileID: 21300000, guid: acd32bbb6c6254a78b67d06d7b346e0a, type: 3}
+  - id: tsurika2
+    displayName: TsurikaTwo
+    description: Goton Gatan
+    previewSprite: {fileID: 21300000, guid: 3eeab52e4575b4994a746b9885cd8f1e, type: 3}
+  - id: obasun
+    displayName: Obasanglass
+    description: You are sweet
+    previewSprite: {fileID: 21300000, guid: 6e4ea489329e741c69363a553aba1d37, type: 3}
+  - id: birdness
+    displayName: Birdness
+    description: I am looking at you
+    previewSprite: {fileID: 21300000, guid: c1377e2013e9a49af9299e8268d8d84c, type: 3}
+  - id: desk
+    displayName: Deskuma
+    description: I live under your desk
+    previewSprite: {fileID: 21300000, guid: 12ad0851758a945e496131f6e0fa694b, type: 3}
+  - id: rug
+    displayName: Sottosock
+    description: I'm here to surprise you
+    previewSprite: {fileID: 21300000, guid: 03f1d98d0803e4c7eaf8dc118b6f472b, type: 3}
+  - id: poster
+    displayName: Nanibake
+    description: I don't know where I come from
+    previewSprite: {fileID: 21300000, guid: d8d0e0478a2a04a19a2940a02ce1be72, type: 3}
 --- !u!1 &1046153209
 GameObject:
   m_ObjectHideFlags: 0
