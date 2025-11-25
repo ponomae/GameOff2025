@@ -9,5 +9,6 @@ public class StartButton : MonoBehaviour
     public void OnStartButtonPressed()
     {
         SceneManager.LoadScene(firstSceneName);
+        BGMManager.Instance.PlayBGM();
     }
 }

@@ -535,7 +535,7 @@ MonoBehaviour:
     previewSprite: {fileID: 21300000, guid: 3eeab52e4575b4994a746b9885cd8f1e, type: 3}
   - id: obasun
     displayName: Obasanglass
-    description: You are sweet
+    description: You are a sweety
     previewSprite: {fileID: 21300000, guid: 6e4ea489329e741c69363a553aba1d37, type: 3}
   - id: birdness
     displayName: Birdness
